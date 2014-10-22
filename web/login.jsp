@@ -11,12 +11,14 @@ Date-10/20/2014
 	public void jspInit()
 	{
 		try{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Class.forName("oracle.jdbc.OracleDriver");
 		String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
 		con=DriverManager.getConnection(conString,"agillfi","200024707");
 		}
-		catch(Exception e){}
-	}
+		catch(Exception e){
+                }
+                
+        }
 	public void jspDestroy()
 	{
 		try{
@@ -28,7 +30,7 @@ Date-10/20/2014
 	}
 %>
 <html>
-	<body bgcolor="black">
+	<body>
 <%
 	String uname=request.getParameter("uname");
 	String pwd=request.getParameter("pwd");
