@@ -40,6 +40,10 @@ Date-10/20/2014
 	try{
             Statement st=con.createStatement();
             rs=st.executeQuery(query);
+           /* if(!rs.next()){
+                System.out.println("<script>alert('Login fail.')</script>");
+                System.out.println("<script>window.location='login.html'</script>");
+            }*/
             while(rs.next()){
                 int role = rs.getInt("ROLE");
                 if(role==1){
@@ -61,6 +65,7 @@ Date-10/20/2014
                     <%
                 }
             }
+
 	}
 	catch(Exception e){
 		System.out.println(e);
