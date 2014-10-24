@@ -3,7 +3,7 @@
     Created on : Oct 13, 2014, 8:45:19 PM
     Author : adam, maria (10/16)
 --%>
-
+<%@ page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,8 +19,9 @@
         <title>Course</title>
     </head>
     <body>
+        <% String course=request.getParameter("course"); %>
         <!-- follow rules on page -->
-        <h1>Welcome to [INSERT COURSE NAME]</h1>
+        <h1>Welcome to <%= course %></h1>
         <div class="panel panel-default">
             <div class="panel-heading">Course Options</div>
                 <div class="panel-body">

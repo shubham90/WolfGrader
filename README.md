@@ -1,4 +1,3 @@
 WolfGrader
 ==========
-
-WolfGrader System
+Netbeans --> New Project --> Web Application --> Use Glassfish server.

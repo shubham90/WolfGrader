@@ -39,6 +39,7 @@ and open the template in the editor.
                   <label class="checkbox">
                     <input type="checkbox" value="remember-me"> Remember me
                   </label>
+                    <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </div>
         </div>

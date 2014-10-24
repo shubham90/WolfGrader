@@ -17,9 +17,8 @@ import javax.swing.JOptionPane;
 public class DBConnection {
     public static Connection connectDB(){
         try{
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
-            Connection con=DriverManager.getConnection(conString,"agillfi","200024707");
+            Class.forName("oracle.jdbc.OracleDriver");
+            Connection con= DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl","agillfi","200024707");
             return con;
         }catch(ClassNotFoundException | SQLException e){
             JOptionPane.showMessageDialog(null, e);

@@ -3,6 +3,28 @@
     Created on : Oct 13, 2014, 8:10:35 PM
     Author     : adam
 --%>
+<%@ page import="java.sql.*" %>
+<%!
+Connection con;
+	public void jspInit()
+	{
+		try{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
+		con=DriverManager.getConnection(conString,"agillfi","200024707");
+		}
+		catch(Exception e){}
+	}
+	public void jspDestroy()
+	{
+		try{
+		con.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,17 +41,39 @@
         <title>Select Course</title>
     </head>
     <body>
-        <form role="form" action="select_course.jsp" method="POST">
+        <form role="form" action="professor_course.jsp" method="POST">
             <div class="form-group col-xs-4">
                 <select class="form-control" name="course">
+        <%
+        String test = session.getAttribute("name").toString();
+        
+	String query="SELECT C1.CID, C1.NAME FROM COURSES C1 "
+                + "WHERE C1.UNITYID='"+test+"'";
+	ResultSet rs;
+	try{
+            Statement st=con.createStatement();
+            rs=st.executeQuery(query);
+            while(rs.next()){
+                String name = rs.getString("NAME");
+                String cid = rs.getString("CID");
+                %>
                     <!-- populate from courses table -->
-                    <option value="CSC540">DBMS</option>
-                    <option value="CSC515">Software Security</option>
-                </select>
+                    <option value="<%= cid + "-" + name %>"><%= cid + "-" + name %></option>
+<%
+                }
+            %>
+            </select>
             </div>
             
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
+            <%
+            }
+	catch(Exception e){
+		System.out.println(e);
+		throw new Exception();
+	}
+%>
         <br />
         <a href="professor.jsp">Back</a>
     </body>

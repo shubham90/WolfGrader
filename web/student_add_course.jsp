@@ -29,9 +29,9 @@
 //            }
         </script>
         
-        <form role="form" name="add_course" action="token.jsp" method="post">
+        <form role="form" name="token" action="student_token.jsp" method="post">
             <div class="form-group">
-                Add Course: <input type="text" class="form-control" placeholder="Enter Token" required>
+                Add Course: <input type="text" class="form-control" placeholder="Enter Token (ex: CSC540FALL14" required>
                 <input type="submit" value="Submit">
             </div>
         </form>

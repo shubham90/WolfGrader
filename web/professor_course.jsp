@@ -19,15 +19,25 @@
         <title>Course</title>
     </head>
     <body>
+        <% String course=request.getParameter("course"); %>
         <!-- follow rules on page -->
-        <!-- Add homework -->
-        <a href="professor_add_homework.jsp">Add Homework</a><br />
-        <a href="professor_add_questions.jsp">Add/Remove Questions to Homework</a><br />
-        <a href="professor_edit_homework.jsp">Edit Homework</a><br />
-        <a href="professor_view_homework.jsp">View Homework</a><br />
-        <a href="professor_view_notification.jsp">View Notification</a><br />
-        <a href="professor_reports.jsp">Reports</a><br />
-        <a href="professor.jsp">Back</a>
+        <h1>Welcome to <%= course %></h1>
+        <div class="panel panel-default">
+            <div class="panel-heading">Course Options</div>
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="professor_add_homework.jsp">Add Homework</a></li>
+                        <li><a href="professor_add_questions.jsp">Add/Remove Questions to Homework</a></li>
+                        <li><a href="professor_edit_homework.jsp">Edit Homework</a></li>
+                        <li><a href="professor_view_homework.jsp">View Homework</a></li>
+                        <li><a href="professor_view_notification.jsp">View Notification</a></li>
+                        <li><a href="professor_reports.jsp">Reports</a></li>
+                        
+                    </ul>
+                    <br />
+                    <a href="professor_select_course.jsp">Back</a>
+                </div>
+        </div>
         
     </body>
 </html>
