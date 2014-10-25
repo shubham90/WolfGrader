@@ -36,8 +36,6 @@ Date-10/20/2014
 	String query="SELECT * FROM USERS WHERE UNITYID='"+uname+"' AND PASSWORD='"+pwd+"'";
 	boolean flag=true;
 	ResultSet rs;
-        %>
-            <%
 	try{
             
             Statement st=con.createStatement();
