@@ -19,21 +19,13 @@
         <title>Add Course</title>
     </head>
     <body>
-        <script>
-//            function validateForm() {
-//                var x = document.forms["add_course"]["fname"].value;
-//                if (x==null || x=="") {
-//                    alert("First name must be filled out");
-//                    return false;
-//                }
-//            }
-        </script>
         
-        <form role="form" name="token" action="student_token.jsp" method="post">
+        <form role="form" name="token_form" action="student_token.jsp" method="post">
             <div class="form-group">
-                Add Course: <input type="text" class="form-control" placeholder="Enter Token (ex: CSC540FALL14" required>
+                Add Course: <input type="text" class="form-control" placeholder="Enter Token (ex: CSC540FALL14" name="token" required>
                 <input type="submit" value="Submit">
             </div>
         </form>
+        <a href="student.jsp">Back</a>
     </body>
 </html>
