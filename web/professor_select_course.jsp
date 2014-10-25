@@ -47,25 +47,31 @@ Connection con;
         <%
         String test = session.getAttribute("name").toString();
         
-	String query="SELECT C1.CID, C1.NAME FROM COURSES C1 "
+	String query="SELECT C1.CID, C1.NAME, C1.TOKEN FROM COURSES C1 "
                 + "WHERE C1.UNITYID='"+test+"'";
 	ResultSet rs;
 	try{
             Statement st=con.createStatement();
             rs=st.executeQuery(query);
+            
             while(rs.next()){
                 String name = rs.getString("NAME");
                 String cid = rs.getString("CID");
+                String token= rs.getString("TOKEN");
                 %>
                     <!-- populate from courses table -->
-                    <option value="<%= cid + "-" + name %>"><%= cid + "-" + name %></option>
+                    <option value="<%= token %>" name='token'> <%= cid + "-" + name+ "-" + token %>
+                    </option>
+                    <% //session.setAttribute( "token", token ); %>
 <%
+                    
                 }
             %>
             </select>
             </div>
             
             <button type="submit" class="btn btn-default">Submit</button>
+            
         </form>
             <%
             }

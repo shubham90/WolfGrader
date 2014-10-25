@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <<head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
         <!-- Latest compiled and minified CSS -->
@@ -19,9 +19,12 @@
         <title>Course</title>
     </head>
     <body>
-        <% String course=request.getParameter("course"); %>
+        <% String token=request.getParameter("course"); 
+        session.setAttribute( "token", token ); 
+        %>
+        
         <!-- follow rules on page -->
-        <h1>Welcome to <%= course %></h1>
+        <h1>Welcome to <%= token %></h1>
         <div class="panel panel-default">
             <div class="panel-heading">Course Options</div>
                 <div class="panel-body">

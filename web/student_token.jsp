@@ -81,15 +81,16 @@ Connection con;
                         %><h2>Course Full, Cannot Register</h2><%
                     }
                     else{
-                        int new_enrollment = current_enrollment + 1;
-                        String update_query="UPDATE COURSES SET ENROLLED_STUDENTS="+new_enrollment+"WHERE TOKEN='"+token+"'";
-                        Statement update_st=con.createStatement();
-                        update_st.executeQuery(update_query);
                         try{
                             String update_query2="INSERT INTO COURSE_ROSTER (CID, UNITYID) VALUES('"+token+"','"+unityid+"')";
                             Statement update_st2=con.createStatement();
                             update_st2.executeQuery(update_query2);
                             %><h2>You have joined <%= token %>!</h2><%
+                            
+                            int new_enrollment = current_enrollment + 1;
+                            String update_query="UPDATE COURSES SET ENROLLED_STUDENTS="+new_enrollment+"WHERE TOKEN='"+token+"'";
+                            Statement update_st=con.createStatement();
+                            update_st.executeQuery(update_query);
                         }
                         catch(Exception e){
                             %><h2>You are already in <%= token %>!</h2><%
@@ -109,6 +110,6 @@ Connection con;
             System.out.println(e);
             throw new Exception();
 	}
-%>
+%><a href="student_add_course.jsp">Back</a>
     </body>
 </html>

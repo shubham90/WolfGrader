@@ -19,21 +19,21 @@
         <title>Add Course</title>
     </head>
     <body>
-        <script>
-//            function validateForm() {
-//                var x = document.forms["add_course"]["fname"].value;
-//                if (x==null || x=="") {
-//                    alert("First name must be filled out");
-//                    return false;
-//                }
-//            }
-        </script>
-        
-        <form role="form" name="add_course" action="token.jsp" method="post">
-            <div class="form-group">
-                Add Course: <input type="text" class="form-control" placeholder="Enter Token" required>
-                <input type="submit" value="Submit">
+        <form role="form" action="professor_add_course_2.jsp" method="POST">
+            <div class="form-group col-xs-4">
+                Course ID: <input type="text" class="form-control" placeholder="CSC440" required name='cid'>
+                Name: <input type="text" class="form-control" placeholder="Database Systems" required name='name'>
+                Start Date: <input type="text" class="form-control" placeholder="25 August 2014" required name='start_date'>
+                End Date: <input type="text" class="form-control" placeholder="10 December 2014" required name='end_date'>
+                <input type="hidden" class="form-control" value='<%= session.getAttribute("name") %>' required name='unityid'>
+                <input type="hidden" class="form-control" value='0' required name='enrolled_students'>
+                Max Enrolled Students: <input type="text" class="form-control" placeholder="20" required name='max_enrolled_students'>
+                Grad Status: <input type="text" class="form-control" placeholder="1 for undergrad, 2 for grad" required name='grad_status'>
+                Token: <input type="text" class="form-control" placeholder="CSC440FALL14" required name='token'>
+                <input type="submit" value="Submit" class="btn btn-default">
             </div>
         </form>
+        <br />
+        <a href="professor.jsp">Back</a>
     </body>
 </html>

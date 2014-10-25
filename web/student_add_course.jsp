@@ -22,7 +22,7 @@
         
         <form role="form" name="token_form" action="student_token.jsp" method="post">
             <div class="form-group">
-                Add Course: <input type="text" class="form-control" placeholder="Enter Token (ex: CSC540FALL14)" name="token" required>
+                Add Course: <input type="text" class="form-control" placeholder="Enter Token (ex: CSC540FALL14" name="token" required>
                 <input type="submit" value="Submit">
             </div>
         </form>
