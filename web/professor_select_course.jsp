@@ -62,7 +62,6 @@ Connection con;
                     <!-- populate from courses table -->
                     <option value="<%= token %>" name='token'> <%= cid + "-" + name+ "-" + token %>
                     </option>
-                    <% //session.setAttribute( "token", token ); %>
 <%
                     
                 }

@@ -1,31 +1,31 @@
-<%-- 
-    Document   : add_course
+<%--
+    Document : add_course
     Created on : Oct 13, 2014, 8:34:08 PM
-    Author     : adam
+    Author : adam
 --%>
 <%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="java.sql.*" 
+<%@ page import="java.sql.*"
          import="java.util.Date"%>
 <%!
 Connection con;
-	public void jspInit()
-	{
-		try{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
-		con=DriverManager.getConnection(conString,"agillfi","200024707");
-		}
-		catch(Exception e){}
-	}
-	public void jspDestroy()
-	{
-		try{
-		con.close();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-	}
+public void jspInit()
+{
+try{
+Class.forName("oracle.jdbc.driver.OracleDriver");
+String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
+con=DriverManager.getConnection(conString,"agillfi","200024707");
+}
+catch(Exception e){}
+}
+public void jspDestroy()
+{
+try{
+con.close();
+}
+catch(Exception e){
+e.printStackTrace();
+}
+}
 %>
 
 
@@ -49,6 +49,7 @@ Connection con;
         String name = request.getParameter("name");
         String start_date = request.getParameter("start_date");
         String end_date = request.getParameter("end_date");
+        
         int enrolled_students = Integer.parseInt(request.getParameter("enrolled_students"));
         int max_enrolled_students = Integer.parseInt(request.getParameter("max_enrolled_students"));
         int grad_status = Integer.parseInt(request.getParameter("grad_status"));
@@ -62,15 +63,15 @@ Connection con;
                 +"','"+end_date+"','"+unityid+"',"+enrolled_students+","+max_enrolled_students
                 +","+grad_status+",'"+token+"')";
 
-	ResultSet rs;
-	try{
+ResultSet rs;
+try{
             Statement st=con.createStatement();
             rs=st.executeQuery(query);
             %><h2>Course <%= name %> created successfully!</h2><%
-	}
-	catch(Exception e){
+}
+catch(Exception e){
             %><h2>The token value, <%= token %>, already exists!</h2><%
-	}%>
+}%>
         
         <a href="professor_add_course.jsp">Back</a>
         

@@ -1,14 +1,12 @@
 <%-- 
-    Document   : select_course
-    Created on : Oct 13, 2014, 8:10:35 PM
-    Author 1   : adam
-    Author 2   : Shubham
+    Document   : select_questions
+    Created on : Oct 25, 2014, 11:10:35 PM
+    Author     : Shubham
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ page import="java.sql.*"
-         import="java.util.Date"%>
+<%@ page import="java.sql.*" %>
 <%!
 
 	Connection con;
@@ -42,27 +40,15 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-        <title>Add Exercise</title>
+        <title>Select Questions</title>
     </head>
-    
-    
     <body>
-        
-        <script>
-             $(function() {
-                $("#datepicker1").datepicker({ dateFormat: "dd MM yy" });
-                $("#datepicker2").datepicker({ dateFormat: "dd MM yy" });
-            });
-        </script>
-        <!-- perhaps have an add homework success page.. -->
-        <form role="form" action="professor_add_homework_2.jsp" method="POST">
+
+        <form role="form" action="professor_add_homework_success" method="POST">
                 <div class="form-group col-xs-4">
-                <br><br><p>Start Date: <input type="text" id="datepicker1" required name='start_date'></p>
-                End Date : <input type="text" id="datepicker2" required name='end_date'><br><br>
-                Number of Attempts: <input type="text" class="form-control" placeholder="Enter Number of Attempts" required name= 'retries'><br>
+                Start Date: <input type="text" class="form-control" placeholder="Enter Start Date" required><br>
+                End Date: <input type="text" class="form-control" placeholder="Enter End Date" required><br>.
+                Number of Attempts: <input type="text" class="form-control" placeholder="Enter Number of Attempts" required><br>
                 Select Topics:
                 <%
         //String token2 = request.getParameter("token");
@@ -73,7 +59,7 @@
     try{    
             Statement st=con.createStatement();
             rs=st.executeQuery(query);
-       //     System.out.print(token);
+            System.out.print(token);
         }
 	catch(Exception e){
 		System.out.println(e);
@@ -89,23 +75,24 @@
             <td><%=rs.getString("name")%></td>
             <td><input type="checkbox" name="checkbox"
                 value="<%=rs.getString("tid")%>"></td>
-            </tr>
+            </tr>>
             <%
                 }
             %>
         </table>
                 
-              <br>  Difficulty Range (1 to 6): <input type="text" class="form-control" placeholder="From" required name='diff_range_from'> to <input type="text" class="form-control" placeholder="To" required name='diff_range_to'><br>
-                Score Selection Scheme: <select name="score_selection" onchange="">
+              <br>  Difficulty Range (1 to 6): <input type="text" class="form-control" placeholder="From" required> to <input type="text" class="form-control" placeholder="To" required><br>
+                Score Selection Scheme: <select name="source" onchange="">
                                         <option value=1>Latest Attempt</option>
                                         <option value=2>Maximum Score</option>
                                         <option value=3>Average Score</option>
                                         </select> <br><br>
-                <!-- TODO: Randomize seed implementation -->
                 Number of Questions: <input type="text" class="form-control" placeholder="Enter Number of Questions" required><br>
-                Correct Answer Points: <input type="text" class="form-control" placeholder="Enter Correct Answer Points" required name='points'><br>
-                Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required name='penalty'><br>
-                <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;
+                
+                Number of Questions: <input type="text" class="form-control" placeholder="Enter Number of Questions" required><br>
+                Correct Answer Points: <input type="text" class="form-control" placeholder="Enter Correct Answer Points" required><br>
+                Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required><br>
+                <input type="submit" value="Select Questions" class="btn btn-default"> &nbsp; &nbsp;
  <!--               <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;    -->
                 <a href="professor.jsp">Back</a>
             </div>
@@ -113,3 +100,4 @@
         <br />
     </body>
 </html>
+
