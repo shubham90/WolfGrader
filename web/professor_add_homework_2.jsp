@@ -47,30 +47,32 @@ int exid = rand.nextInt(90000) + 10000;
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <title>Add Course</title>
+        <title>Add Homework</title>
     </head>
     <body>
         <form id="add_homework_2" role="form" action="select_questions.jsp" method="POST">
+        <%! String[] tid; %>
         <%
         String token= session.getAttribute("token").toString();
         int diff_range = Integer.parseInt(request.getParameter("diff_range_from"));
         int diff_range_to = Integer.parseInt(request.getParameter("diff_range_to"));
         String start_date = request.getParameter("start_date");
         String end_date = request.getParameter("end_date");
+        String name = request.getParameter("name");
         int points = Integer.parseInt(request.getParameter("points"));
         int retries = Integer.parseInt(request.getParameter("retries"));
         int penalty = Integer.parseInt(request.getParameter("penalty"));
         int randomize = Integer.parseInt(request.getParameter("penalty"));
-        int score_selection = Integer.parseInt(request.getParameter("score_selection"));
-        
-        String unityid = session.getAttribute("name").toString();
+        int score_selection = Integer.parseInt(request.getParameter("score_selection")); 
+        tid= (request.getParameterValues("checkbox"));
+        session.setAttribute( "tid", tid );
          
         String query="INSERT INTO EXERCISES (EXID, DIFF_RANGE, CID, RETRIES, "
                 + "START_DATE, END_DATE, POINTS, PENALTY, RANDOMIZE, "
-                + "SCORE_SELECTION, DIFF_RANGE_TO)VALUES("+exid+","+diff_range+", "
+                + "SCORE_SELECTION, DIFF_RANGE_TO,NAME)VALUES("+exid+","+diff_range+", "
                 + " '"+token+"', "+retries+", '"+start_date+"', '"+end_date+"', "
                 + " "+points+","+penalty+","+randomize+", "
-                + " "+score_selection+","+diff_range_to+")";
+                + " "+score_selection+","+diff_range_to+", '"+name+"')";
 
 ResultSet rs;
 try{
