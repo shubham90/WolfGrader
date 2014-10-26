@@ -1,7 +1,8 @@
 <%-- 
     Document   : select_course
     Created on : Oct 13, 2014, 8:10:35 PM
-    Author     : adam
+    Author 1   : adam
+    Author 2   : Shubham
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -44,12 +45,12 @@
     </head>
     <body>
         <!-- perhaps have an add homework success page.. -->
-        <form role="form" action="professor_add_homework_success.jsp" method="POST">
-            <div class="form-group col-xs-4">
-                Start Date: <input type="text" class="form-control" placeholder="Enter Start Date" required>
-                End Date: <input type="text" class="form-control" placeholder="Enter End Date" required>
-                Number of Attempts: <input type="text" class="form-control" placeholder="Enter Number of Attempts" required>
-                Topics:
+        <form role="form" action="select_questions.jsp" method="POST">
+                <div class="form-group col-xs-4">
+                Start Date: <input type="text" class="form-control" placeholder="Enter Start Date" required><br>
+                End Date: <input type="text" class="form-control" placeholder="Enter End Date" required><br>.
+                Number of Attempts: <input type="text" class="form-control" placeholder="Enter Number of Attempts" required><br>
+                Select Topics:
                 <%
         //String token2 = request.getParameter("token");
         String token= session.getAttribute("token").toString();
@@ -67,32 +68,36 @@
 		throw new Exception();
 	}
                 %>    <table border='1'>
-            <th>NAME</th> 
+            <th>Topics</th> 
             <th>Select</th>
             <%
                 while (rs.next()) {
-            %>
+            %> <tr>
             <td><%=rs.getString("name")%></td>
             <td><input type="checkbox" name="checkbox"
                 value="<%=rs.getString("tid")%>"></td>
-
+            </tr>>
             <%
                 }
             %>
         </table>
                 
-                
-                
-                
-                Difficulty Range (1 to 6): <input type="text" class="form-control" placeholder="Enter Difficulty Range" required>
-                Score Selection Scheme: <input type="text" class="form-control" placeholder="Enter Score Selection Scheme" required>
-                Number of Questions: <input type="text" class="form-control" placeholder="Enter Number of Questions" required>
-                Correct Answer Points: <input type="text" class="form-control" placeholder="Enter Correct Answer Points" required>
-                Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required>
-                <input type="submit" value="Submit" class="btn btn-default">
+              <br>  Difficulty Range (1 to 6): <input type="text" class="form-control" placeholder="From" required> to <input type="text" class="form-control" placeholder="To" required><br>
+                Score Selection Scheme: <select name="source" onchange="">
+                                        <option value=1>Latest Attempt</option>
+                                        <option value=2>Maximum Score</option>
+                                        <option value=3>Average Score</option>
+                                        </select> <br><br>
+                Number of Questions: <input type="text" class="form-control" placeholder="Enter Number of Questions" required><br>
+                <!-- TODO: Randomize seed implementation -->
+                Number of Questions: <input type="text" class="form-control" placeholder="Enter Number of Questions" required><br>
+                Correct Answer Points: <input type="text" class="form-control" placeholder="Enter Correct Answer Points" required><br>
+                Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required><br>
+                <input type="submit" value="Select Questions" class="btn btn-default"> &nbsp; &nbsp;
+ <!--               <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;    -->
+                <a href="professor.jsp">Back</a>
             </div>
         </form>
         <br />
-        <a href="professor.jsp">Back</a>
     </body>
 </html>
