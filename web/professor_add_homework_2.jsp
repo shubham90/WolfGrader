@@ -32,6 +32,7 @@ e.printStackTrace();
 <%
 Random rand = new Random();
 int exid = rand.nextInt(90000) + 10000;
+session.setAttribute( "exid", exid );
 %>
 
 
@@ -54,8 +55,11 @@ int exid = rand.nextInt(90000) + 10000;
         <%! String[] tid; %>
         <%
         String token= session.getAttribute("token").toString();
+        session.setAttribute("token",token);
         int diff_range = Integer.parseInt(request.getParameter("diff_range_from"));
+        session.setAttribute( "diff_range", diff_range);
         int diff_range_to = Integer.parseInt(request.getParameter("diff_range_to"));
+        session.setAttribute( "diff_range_to", diff_range_to );
         String start_date = request.getParameter("start_date");
         String end_date = request.getParameter("end_date");
         String name = request.getParameter("name");
@@ -65,7 +69,12 @@ int exid = rand.nextInt(90000) + 10000;
         int randomize = Integer.parseInt(request.getParameter("penalty"));
         int score_selection = Integer.parseInt(request.getParameter("score_selection")); 
         tid= (request.getParameterValues("checkbox"));
-        session.setAttribute( "tid", tid );
+        
+        int[] inttid = new int[tid.length];
+        for (int i = 0; i < tid.length; i++) {
+            inttid[i] = Integer.parseInt(tid[i]);
+        }
+        session.setAttribute( "tid", inttid );
          
         String query="INSERT INTO EXERCISES (EXID, DIFF_RANGE, CID, RETRIES, "
                 + "START_DATE, END_DATE, POINTS, PENALTY, RANDOMIZE, "

@@ -1,12 +1,14 @@
 <%-- 
     Document   : select_questions
-    Created on : Oct 25, 2014, 11:10:35 PM
-    Author     : Shubham
+    Created on : Oct 13, 2014, 8:10:35 PM
+    Author 1   : Shubham
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<%@ page import="java.sql.*" %>
+
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.sql.*"
+         import="java.util.Date"
+         import="java.util.Random"%>
 <%!
 
 	Connection con;
@@ -17,8 +19,11 @@
 		String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
 		con=DriverManager.getConnection(conString,"agillfi","200024707");
 		}
-		catch(Exception e){}
-	}
+		catch(Exception e){
+                    e.printStackTrace();
+                }
+        }
+	
 	public void jspDestroy()
 	{
 		try{
@@ -29,7 +34,8 @@
 		}
 	}
 %>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -44,60 +50,54 @@
     </head>
     <body>
 
-        <form role="form" action="professor_add_homework_success" method="POST">
-                <div class="form-group col-xs-4">
-                Start Date: <input type="text" class="form-control" placeholder="Enter Start Date" required><br>
-                End Date: <input type="text" class="form-control" placeholder="Enter End Date" required><br>.
-                Number of Attempts: <input type="text" class="form-control" placeholder="Enter Number of Attempts" required><br>
-                Select Topics:
-                <%
-        //String token2 = request.getParameter("token");
-        String token= session.getAttribute("token").toString();
-        String query= "SELECT * FROM TOPICS WHERE cid= '"+token+"'";
-	boolean flag=true;
-	ResultSet rs;
-    try{    
-            Statement st=con.createStatement();
-            rs=st.executeQuery(query);
-            System.out.print(token);
-        }
-	catch(Exception e){
-		System.out.println(e);
-		flag=false;
-		throw new Exception();
-	}
-                %>    <table border='1'>
-            <th>Topics</th> 
-            <th>Select</th>
+        <form role="form" action="professor_add_homework_success.jsp" method="POST">
+            <%  String[] qid;
+                String token= session.getAttribute("token").toString();
+                session.setAttribute("token", token);
+                int diff_range= Integer.parseInt((session.getAttribute("diff_range")).toString());
+                int diff_range_to= Integer.parseInt((session.getAttribute("diff_range_to")).toString());
+                int[] tid= (int[])(session.getAttribute("tid"));
+                int exid= Integer.parseInt((session.getAttribute("exid")).toString());
+                session.setAttribute("exid", exid);
+                String blah = "";
+                for (int i = 1; i < tid.length; i++) {
+                 System.out.print(tid[i]);
+                 
+                 blah += " OR TID=" + tid[i];
+                 
+                }
+                System.out.print(blah);
+                String query = "SELECT * FROM QUESTION WHERE DIFF_LEVEL >= "+diff_range+""
+                + " AND DIFF_LEVEL <= "+diff_range_to+" AND CID= '"+token+"' AND "
+                + " (TID= "+ tid[0]+ blah +")" ;
+                ResultSet rs=null; 
+                try{
+                Statement st=con.createStatement();
+                rs=st.executeQuery(query);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+%>
+                <table border='1' class="table table-hover">
+                <th class="active">Select</th> 
+                <th class="active">Questions</th>
             <%
                 while (rs.next()) {
             %> <tr>
-            <td><%=rs.getString("name")%></td>
-            <td><input type="checkbox" name="checkbox"
-                value="<%=rs.getString("tid")%>"></td>
-            </tr>>
-            <%
-                }
-            %>
+              <td class="info"><input type="checkbox" name="question"
+                value="<%=rs.getString("qid")%>"></td>
+            <td class="success"><%=rs.getString("qtext")%></td>
+            
+            </tr>
+            <%}%>
         </table>
-                
-              <br>  Difficulty Range (1 to 6): <input type="text" class="form-control" placeholder="From" required> to <input type="text" class="form-control" placeholder="To" required><br>
-                Score Selection Scheme: <select name="source" onchange="">
-                                        <option value=1>Latest Attempt</option>
-                                        <option value=2>Maximum Score</option>
-                                        <option value=3>Average Score</option>
-                                        </select> <br><br>
-                Number of Questions: <input type="text" class="form-control" placeholder="Enter Number of Questions" required><br>
-                
-                Number of Questions: <input type="text" class="form-control" placeholder="Enter Number of Questions" required><br>
-                Correct Answer Points: <input type="text" class="form-control" placeholder="Enter Correct Answer Points" required><br>
-                Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required><br>
-                <input type="submit" value="Select Questions" class="btn btn-default"> &nbsp; &nbsp;
+              
+                <input type="submit" value="Submit" class="btn btn-primary"> &nbsp; &nbsp;
  <!--               <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;    -->
-                <a href="professor.jsp">Back</a>
-            </div>
+                <a href="professor_add_homework.jsp">Back</a>
+            
         </form>
-        <br />
+        <br/>
     </body>
 </html>
 

@@ -81,14 +81,14 @@
 		flag=false;
 		throw new Exception();
 	}
-                %>    <table border='1'>
-            <th>Topics</th> 
-            <th>Select</th>
+                %>    <table border='1' class="table table-hover">
+            <th class="active">Topics</th> 
+            <th class="active">Select</th>
             <%
                 while (rs.next()) {
             %> <tr>
-            <td><%=rs.getString("name")%></td>
-            <td><input type="checkbox" name="checkbox"
+            <td class="info"><%=rs.getString("name")%></td>
+            <td class="success"><input type="checkbox" name="checkbox"
                 value="<%=rs.getString("tid")%>"></td>
             </tr>
             <%
@@ -103,7 +103,6 @@
                                         <option value=3>Average Score</option>
                                         </select> <br><br>
                 <!-- TODO: Randomize seed implementation -->
-                Number of Questions: <input type="text" class="form-control" placeholder="Enter Number of Questions" required><br>
                 Correct Answer Points: <input type="text" class="form-control" placeholder="Enter Correct Answer Points" required name='points'><br>
                 Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required name='penalty'><br>
                 <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;
