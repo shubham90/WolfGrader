@@ -4,6 +4,33 @@
     Author     : adam
 --%>
 
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.sql.*"
+         import="java.util.Date"
+         import="java.util.Random"%>
+<%!
+Connection con;
+public void jspInit()
+{
+try{
+Class.forName("oracle.jdbc.driver.OracleDriver");
+String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
+con=DriverManager.getConnection(conString,"agillfi","200024707");
+}
+catch(Exception e){}
+}
+public void jspDestroy()
+{
+try{
+con.close();
+}
+catch(Exception e){
+e.printStackTrace();
+}
+}
+%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,9 +46,26 @@
         <title>Edit Homework</title>
     </head>
     <body>
-        <!-- 4A.3.1.1 -->
-        <!-- Display "Enter new $name_of_value_passed_from_form" -->
-        <!-- sql query to alter data for this column -->
-        <a href="professor_edit_homework_pt_2.jsp">Back</a>
+        
+       <% 
+           System.out.print("I have reached Edit 2");
+           int val=Integer.parseInt((request.getParameter("question_column")).toString());  
+       if(val==1){
+           %><h2>You have selected Start Date</h2><%
+       }
+       else{
+           %><h2>You have selected other input</h2><%
+       }
+       
+       
+       
+       
+       
+       
+       %>
+       
+       
+       
+
     </body>
 </html>

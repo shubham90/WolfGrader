@@ -31,6 +31,6 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
         <br />
-        <a href="professor.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

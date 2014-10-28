@@ -25,6 +25,6 @@
         <!-- post the form to ta_view_homework_pt_2.jsp-->
         
         <br />
-        <a href="ta.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

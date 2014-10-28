@@ -22,6 +22,6 @@
         <h2>Remove Question</h2>
         <br />
         <!-- Corresponds to 4A.2.2 in worksheet-->
-        <a href="professor_add_questions_pt_2.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

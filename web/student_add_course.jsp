@@ -26,6 +26,6 @@
                 <input type="submit" value="Submit">
             </div>
         </form>
-        <a href="student.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

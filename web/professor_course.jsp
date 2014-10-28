@@ -39,7 +39,8 @@
                         
                     </ul>
                     <br />
-                    <a href="professor_select_course.jsp">Back</a>
+     <!--               <a href="professor_select_course.jsp">Back</a>                   -->
+                    <a href="javascript:history.back()">Back</a>
                 </div>
         </div>
         

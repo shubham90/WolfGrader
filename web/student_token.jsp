@@ -110,6 +110,6 @@ Connection con;
             System.out.println(e);
             throw new Exception();
 	}
-%><a href="student_add_course.jsp">Back</a>
+%><a href="javascript:history.back()">Back</a>
     </body>
 </html>

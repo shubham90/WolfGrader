@@ -45,11 +45,11 @@ Connection con;
     <body>
         <form role="form" action="student_course.jsp" method="POST">
             <div class="form-group col-xs-4">
-                <select class="form-control" name="course">
+                <select class="form-control" name="token">
         <%
         String test = session.getAttribute("name").toString();
         
-	String query="SELECT C1.CID, C1.NAME FROM COURSES C1, COURSE_ROSTER C2 "
+	String query="SELECT C1.TOKEN, C1.CID, C1.NAME FROM COURSES C1, COURSE_ROSTER C2 "
                 + "WHERE C1.TOKEN = C2.CID AND C2.UNITYID='"+test+"'";
 	ResultSet rs;
 	try{
@@ -58,9 +58,10 @@ Connection con;
             while(rs.next()){
                 String name = rs.getString("NAME");
                 String cid = rs.getString("CID");
+                String token = rs.getString("TOKEN");
                 %>
                     <!-- populate from courses table -->
-                    <option value="<%= cid + "-" + name %>"><%= cid + "-" + name %></option>
+                    <option value="<%= token %>"><%= cid + "-" + name %></option>
 <%
                 }
             %>
@@ -77,6 +78,6 @@ Connection con;
 	}
 %>
         <br />
-        <a href="student.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

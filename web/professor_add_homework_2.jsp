@@ -93,7 +93,8 @@ catch(Exception e){
             %><h2>Unable to create exercise for, <%= token %></h2><%
 }%>
         <input type="submit" value="Select Questions" class="btn btn-primary">
-        <a href="professor_add_homework.jsp">Back</a>
+    <!--    <a href="professor_add_homework.jsp">Back</a>                  -->
+        <a href="javascript:history.back()">Back</a>
         </form>   
     </body>
 </html>

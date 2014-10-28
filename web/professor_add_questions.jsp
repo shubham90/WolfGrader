@@ -23,6 +23,6 @@
         <!-- Use result set to populate a drop down form to select correct Homework. -->
         <!-- post the form to professor_add_questions_pt_2.jsp-->
         <br />
-        <a href="professor.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

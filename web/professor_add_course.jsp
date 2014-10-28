@@ -68,6 +68,6 @@
                 <input type="submit" value="Submit" class="btn btn-default">
             </div>
         </form>
-        <a href="professor.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

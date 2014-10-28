@@ -39,6 +39,6 @@
                     
                 </div>
         </div
-        <a href="student_course.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

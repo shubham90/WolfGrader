@@ -21,6 +21,6 @@
     
         <h1>Hello World!</h1>
         <a href="ta_select_course.jsp">Select Course</a><br />
-        <a href="index.html">Back</a>
+        <a href="javascript:history.back()">Back</a>
     
 </html>

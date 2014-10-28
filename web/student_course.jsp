@@ -18,10 +18,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <title>Course</title>
     </head>
+    
     <body>
-        <% String course=request.getParameter("course"); %>
-        <!-- follow rules on page -->
-        <h1>Welcome to <%= course %></h1>
+        <% 
+            String token=request.getParameter("token"); 
+            session.setAttribute( "token", token );
+        %>
+        
+        <h1>Welcome to <%= session.getAttribute( "token" ) %></h1>
         <div class="panel panel-default">
             <div class="panel-heading">Course Options</div>
                 <div class="panel-body">
@@ -32,7 +36,7 @@
                         <li><a href="student_view_notification.jsp">View Notifications</a></li>
                     </ul>
                     <br />
-                    <a href="student_select_course.jsp">Back</a>
+                    <a href="javascript:history.back()">Back</a>
                 </div>
         </div>
     </body>

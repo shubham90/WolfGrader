@@ -23,6 +23,6 @@
         <!-- show details of homework posted from form -->
         
         <br />
-        <a href="ta_view_homework.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

@@ -73,7 +73,7 @@ catch(Exception e){
             %><h2>The token value, <%= token %>, already exists!</h2><%
 }%>
         
-        <a href="professor_add_course.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
         
     </body>
 </html>

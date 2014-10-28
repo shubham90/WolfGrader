@@ -80,6 +80,6 @@ Connection con;
 	}
 %>
         <br />
-        <a href="professor.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

@@ -30,6 +30,6 @@
                 <input type="submit" value="Submit">
             </div>
         </form>
-        <a href="professor_reports_pt.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

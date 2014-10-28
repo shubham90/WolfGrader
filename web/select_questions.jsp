@@ -94,8 +94,8 @@
               
                 <input type="submit" value="Submit" class="btn btn-primary"> &nbsp; &nbsp;
  <!--               <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;    -->
-                <a href="professor_add_homework.jsp">Back</a>
-            
+     <!--           <a href="professor_add_homework.jsp">Back</a>                 -->
+                <a href="javascript:history.back()">Back</a>
         </form>
         <br/>
     </body>

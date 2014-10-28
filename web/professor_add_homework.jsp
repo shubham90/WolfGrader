@@ -107,7 +107,8 @@
                 Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required name='penalty'><br>
                 <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;
  <!--               <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;    -->
-                <a href="professor.jsp">Back</a>
+        <!--        <a href="professor.jsp">Back</a>                                       -->
+                <a href="javascript:history.back()">Back</a>
             </div>
         </form>
         <br />

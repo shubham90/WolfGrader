@@ -23,6 +23,6 @@
         <!-- 4A.6 PART 2-->
         <!-- Post results of query from last page here -->
         <br />
-        <a href="ta_reports.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

@@ -4,6 +4,10 @@
     Author     : adam
 --%>
 
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.sql.*"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +21,16 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <title>Edit Homework</title>
+        
+        <script type="text/javascript">
+
+function changeFunc() {
+var selectBox = document.getElementById("question_column");
+var val = selectBox.options[selectBox.selectedIndex].value;
+alert(val);
+}
+
+</script>
     </head>
     <body>
         <!-- Refer to 4A.3.1 -->
@@ -30,20 +44,22 @@
         
         <form role="form" action="professor_edit_homework_pt_2_1.jsp" method="POST">
             <div class="form-group col-xs-4">
-                <select class="form-control" name="question_column">
-                    <option value="start_date">Start Date</option>
-                    <option value="end_date">End Date</option>
-                    <option value="number_of_attempts">Number of Attempts</option>
-                    <option value="topics">Topics</option>
-                    <option value="difficulty">Difficulty Range (1 to 6)</option>
-                    <option value="score_selection">Score Selection Scheme</option>
-                    <option value="num_of_questions">Number of Questions</option>
-                    <option value="correct_ans_pts">Correct Answer Points</option>
-                    <option value="incorrect_ans_pts">Incorrect Answer Points</option>
+                <select class="form-control" name="question_column" onchange="professor_edit_homework_pt_2_1.jsp">
+                    <option value="1">Start Date</option>
+                    <option value="2">End Date</option>
+                    <option value="3">Number of Attempts</option>
+                    <option value="4">Topics</option>
+                    <option value="5">Difficulty Range (1 to 6)</option>
+                    <option value="6">Score Selection Scheme</option>
+                    <option value="7">Number of Questions</option>
+                    <option value="8">Correct Answer Points</option>
+                    <option value="9">Incorrect Answer Points</option>
                 </select>
+                
+<%@ include file="professor_edit_homework_pt_2_1.jsp" %>
                 <input type="submit" value="Submit" class="btn btn-default">
             </div>
         </form>
-        <a href="professor_edit_homework.jsp">Back</a>
+       <a href="javascript:history.back()">Back</a>
     </body>
 </html>

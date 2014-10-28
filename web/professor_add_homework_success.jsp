@@ -125,7 +125,7 @@ try{
 %>
 
         <input type="submit" value="Back to HomePage" class="btn btn-primary">
-       
+   <!--     <a href="javascript:history.back()">Back</a>                 -->
         </form>   
     </body>
 </html>

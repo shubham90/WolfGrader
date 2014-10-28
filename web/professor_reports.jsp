@@ -26,10 +26,11 @@
         <br />
         <form role="form" name="show_reports" action="professor_reports_pt_2.jsp" method="post">
             <div class="form-group">
-                Query: <input type="text" class="form-control" placeholder="Enter Query" required>
+                <h2> Please write your query here</h2>
+                <input type="text" class="form-control" placeholder="Enter Query" required name="query">
                 <input type="submit" value="Submit">
             </div>
         </form>
-        <a href="professor.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

@@ -31,7 +31,7 @@
                         <li><a href="student_view_notification.jsp">View Notifications</a></li>
                     </ul>
                     <br />
-                    <a href="student_select_course.jsp">Back</a>
+                    <a href="javascript:history.back()">Back</a>
                 </div>
         </div>
     </body>

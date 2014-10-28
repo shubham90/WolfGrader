@@ -24,6 +24,6 @@
         <!-- Corresponds to 4A.2 in worksheet-->
         <a href="professor_add_questions_pt_2_1">Search and Add Question</a>
         <a href="professor_add_questions_pt_2_2">Remove Question</a>
-        <a href="professor_add_questions.jsp">Back</a>
+       <a href="javascript:history.back()">Back</a>
     </body>
 </html>

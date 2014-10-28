@@ -23,6 +23,6 @@
         <!-- if authenticated as a student: -->
         <a href="professor_select_course.jsp">Select Course</a><br />
         <a href="professor_add_course.jsp">Add Course</a><br />
-        <a href="index.html">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>

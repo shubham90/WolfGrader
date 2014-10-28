@@ -24,6 +24,6 @@
         <!-- Display unread notifications if any -->
         <!-- Otherwise, display "No unread notifications for this course -->
         <br />
-        <a href="professor_course.jsp">Back</a>
+        <a href="javascript:history.back()">Back</a>
     </body>
 </html>
