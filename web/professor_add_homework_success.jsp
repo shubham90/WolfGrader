@@ -119,9 +119,9 @@ try{
     
     System.out.print("Error in For loop");
     e1.printStackTrace();
-}
+}}
  %><h2>Homework Created Successfully!</h2><%  
-}
+
 %>
 
         <input type="submit" value="Back to HomePage" class="btn btn-primary">

@@ -22,7 +22,7 @@ catch(Exception e){}
 public void jspDestroy()
 {
 try{
-con.close();
+    con.close();
 }
 catch(Exception e){
 e.printStackTrace();

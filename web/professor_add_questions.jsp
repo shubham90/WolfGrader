@@ -1,8 +1,31 @@
 <%-- 
-    Document   : select_course
-    Created on : Oct 13, 2014, 8:10:35 PM
-    Author     : adam
+    Document   : Add/Remove Questions
+    Created on : Oct 27, 2014, 8:10:35 PM
+    Author 1   : adam
+    Author 2   : Shubham
 --%>
+<%@ page import="java.sql.*" %>
+<%!
+Connection con;
+	public void jspInit()
+	{
+		try{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
+		con=DriverManager.getConnection(conString,"agillfi","200024707");
+		}
+		catch(Exception e){}
+	}
+	public void jspDestroy()
+	{
+		try{
+		con.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,13 +39,55 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <title>Select Course</title>
+        <title>Edit Homework</title>
     </head>
     <body>
-        <!--Execute SQL Query here to display the list of homeworks -->
-        <!-- Use result set to populate a drop down form to select correct Homework. -->
-        <!-- post the form to professor_add_questions_pt_2.jsp-->
+        <form role="form" action="professor_add_questions_pt_2.jsp" method="POST">
+            <div class="form-group col-xs-4">
+                <h2>Add or Remove Questions</h2>
+                <select class="form-control" name="add">
+                     
+        <%
+        String token = session.getAttribute("token").toString();
+        
+	String query="SELECT E1.NAME, E1.EXID FROM EXERCISES E1 "
+                + "WHERE E1.CID='"+token+"'";
+	ResultSet rs;
+	try{
+            Statement st=con.createStatement();
+            rs=st.executeQuery(query);
+           
+            while(rs.next()){
+                String name = rs.getString("NAME");
+                String exid = rs.getString("EXID");
+                %>
+                    <!-- populate from courses table -->
+                    <option value="<%= exid %>" name='exid'> <%= name+ "-" + token %>
+                    </option>
+<%
+                    
+                }
+            
+            %>
+            </select>
+            
+            <br><br>
+            <a href="professor_add_questions_pt_2_1">Search and Add Question</a><br><br>
+            <a href="professor_add_questions_pt_2_2">Remove Question</a><br><br>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default">Submit</button>
+            <a href="javascript:history.back()">Back</a>
+            </div>
+        </form>
+            <%
+            }
+	catch(Exception e){
+		System.out.println(e);
+		throw new Exception();
+	}
+%>
         <br />
-        <a href="javascript:history.back()">Back</a>
+        
     </body>
 </html>

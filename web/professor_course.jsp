@@ -31,16 +31,16 @@
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked">
                         <li><a href="professor_add_homework.jsp">Add Homework</a></li>
-                        <li><a href="professor_add_questions.jsp">Add/Remove Questions to Homework</a></li>
+         <!--               <li><a href="professor_add_questions.jsp">Add/Remove Questions to Homework</a></li>   -->
                         <li><a href="professor_edit_homework.jsp">Edit Homework</a></li>
                         <li><a href="professor_view_homework.jsp">View Homework</a></li>
                         <li><a href="professor_view_notification.jsp">View Notification</a></li>
                         <li><a href="professor_reports.jsp">Reports</a></li>
-                        
+                        <li><a href="javascript:history.back()">Back</a></li>
                     </ul>
                     <br />
      <!--               <a href="professor_select_course.jsp">Back</a>                   -->
-                    <a href="javascript:history.back()">Back</a>
+                    
                 </div>
         </div>
         

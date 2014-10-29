@@ -1,17 +1,39 @@
 <%-- 
-    Document   : select_course
+    Document   : Edit_Hmework
     Created on : Oct 13, 2014, 8:10:35 PM
-    Author     : adam
+    Author 1   : adam
+    Author 2   : Shubham
 --%>
-
-<%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="java.sql.*"%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ page import="java.sql.*"
+         import="java.util.Date"%>
+<%!
+
+	Connection con;
+	public void jspInit()
+	{
+		try{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String conString="jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl";
+		con=DriverManager.getConnection(conString,"agillfi","200024707");
+		}
+		catch(Exception e){}
+	}
+	public void jspDestroy()
+	{
+		try{
+		con.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+%>
+
 <html>
-    <head>
+   <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
         <!-- Latest compiled and minified CSS -->
@@ -20,46 +42,68 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <title>Edit Homework</title>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <title>Add Exercise</title>
+    
+    
+     <script>
+             $(function() {
+                $("#datepicker1").datepicker({ dateFormat: "dd MM yy" });
+                $("#datepicker2").datepicker({ dateFormat: "dd MM yy" });
+            });
+        </script>
         
-        <script type="text/javascript">
-
-function changeFunc() {
-var selectBox = document.getElementById("question_column");
-var val = selectBox.options[selectBox.selectedIndex].value;
-alert(val);
-}
-
-</script>
-    </head>
-    <body>
-        <!-- Refer to 4A.3.1 -->
-        <div class="form-group col-xs-4">
-                <select class="form-control" name="course">
-                    <!-- populate from courses table -->
-                    <option value="CSC540">DBMS</option>
-                    <option value="CSC515">Software Security</option>
-                </select>
-            </div>
+        </head>
         
-        <form role="form" action="professor_edit_homework_pt_2_1.jsp" method="POST">
-            <div class="form-group col-xs-4">
-                <select class="form-control" name="question_column" onchange="professor_edit_homework_pt_2_1.jsp">
-                    <option value="1">Start Date</option>
-                    <option value="2">End Date</option>
-                    <option value="3">Number of Attempts</option>
-                    <option value="4">Topics</option>
-                    <option value="5">Difficulty Range (1 to 6)</option>
-                    <option value="6">Score Selection Scheme</option>
-                    <option value="7">Number of Questions</option>
-                    <option value="8">Correct Answer Points</option>
-                    <option value="9">Incorrect Answer Points</option>
-                </select>
+        <body>
+        <!-- perhaps have an add homework success page.. -->
+        <form role="form" action="professor_add_homework_2.jsp" method="POST">
+                <div class="form-group col-xs-4">
+                <br><br><p>Start Date: <input type="text" id="datepicker1" required name='start_date'></p>
+                End Date : <input type="text" id="datepicker2" required name='end_date'><br><br>
+                Name of the Homework : <input type="text" class="form-control" placeholder="Name of Homework" required name='name'><br><br>
+                Number of Attempts: <input type="text" class="form-control" placeholder="Enter Number of Attempts" required name= 'retries'><br>
+                Select Topics:
+                <%
+        //String token2 = request.getParameter("token");
+        int exid= Integer.parseInt((session.getAttribute("exid")).toString());
+        String query= "SELECT * FROM EXERCISES WHERE EXID= "+exid+"";
+	boolean flag=true;
+	ResultSet rs;
+    try{    
+            Statement st=con.createStatement();
+            rs=st.executeQuery(query);
+       //     System.out.print(token);
+        }
+	catch(Exception e){
+		System.out.println(e);
+		flag=false;
+		throw new Exception();
+	}
+               
+                while (rs.next()) {
+                       
+                }
+            %>
+       
                 
-<%@ include file="professor_edit_homework_pt_2_1.jsp" %>
-                <input type="submit" value="Submit" class="btn btn-default">
+              <br>  Difficulty Range (1 to 6): <input type="text" class="form-control" placeholder="From" required name='diff_range_from'> to <input type="text" class="form-control" placeholder="To" required name='diff_range_to'><br>
+                Score Selection Scheme: <select name="score_selection" onchange="">
+                                        <option value=1>Latest Attempt</option>
+                                        <option value=2>Maximum Score</option>
+                                        <option value=3>Average Score</option>
+                                        </select> <br><br>
+                <!-- TODO: Randomize seed implementation -->
+                Correct Answer Points: <input type="text" class="form-control" placeholder="Enter Correct Answer Points" required name='points'><br>
+                Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required name='penalty'><br>
+                <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;
+ <!--               <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;    -->
+        <!--        <a href="professor.jsp">Back</a>                                       -->
+                <a href="javascript:history.back()">Back</a>
             </div>
         </form>
-       <a href="javascript:history.back()">Back</a>
-    </body>
+        <br />
+</body>
 </html>
