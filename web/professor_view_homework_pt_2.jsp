@@ -73,11 +73,11 @@
                 <th class="active">Value</th>
             <%
                 while (rs.next()) {
-                     if(rs.getInt("diff_range_to")=='1'){
+                     if(rs.getInt("score_selection")=='1'){
                 val="Latest Attempt";  
                 
                 }
-                else if(rs.getInt("diff_range_to")=='2'){
+                else if(rs.getInt("score_selection")=='2'){
                   val="Maximum Score";
                  
                 }
