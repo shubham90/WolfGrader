@@ -28,7 +28,7 @@ Date-10/20/2014
 	}
 %>
 <html>
-	<body bgcolor="black">
+	<body>
 <%
 	String uname=request.getParameter("uname");
 	String pwd=request.getParameter("pwd");
@@ -40,7 +40,15 @@ Date-10/20/2014
             
             Statement st=con.createStatement();
             rs=st.executeQuery(query);
-            while(rs.next()){
+            if (!rs.next()) {
+            do {
+                %><h2>Invalid UnityID or Password!</h2><br>
+            <a href="login.html">Back</a>
+            <%
+             } while(rs.next());
+            } else {  
+            
+    //        while(rs.next()){
                 int role = rs.getInt("ROLE");
                 if(role==1){
                     %>
