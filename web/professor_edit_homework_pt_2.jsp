@@ -59,46 +59,59 @@
         
         <body>
         <!-- perhaps have an add homework success page.. -->
-        <form role="form" action="professor_add_homework_2.jsp" method="POST">
+        <form role="form" action="professor_edit_homework_pt_2_1.jsp" method="POST">
                 <div class="form-group col-xs-4">
-                <br><br><p>Start Date: <input type="text" id="datepicker1" required name='start_date'></p>
-                End Date : <input type="text" id="datepicker2" required name='end_date'><br><br>
-                Name of the Homework : <input type="text" class="form-control" placeholder="Name of Homework" required name='name'><br><br>
-                Number of Attempts: <input type="text" class="form-control" placeholder="Enter Number of Attempts" required name= 'retries'><br>
-                Select Topics:
+               
                 <%
-        //String token2 = request.getParameter("token");
-        int exid= Integer.parseInt((session.getAttribute("exid")).toString());
+
+        int exid=Integer.parseInt(request.getParameter("hw"));
+        session.setAttribute("exid", exid);
         String query= "SELECT * FROM EXERCISES WHERE EXID= "+exid+"";
 	boolean flag=true;
 	ResultSet rs;
     try{    
             Statement st=con.createStatement();
             rs=st.executeQuery(query);
-       //     System.out.print(token);
+
         }
 	catch(Exception e){
 		System.out.println(e);
-		flag=false;
+		 
 		throw new Exception();
 	}
                
                 while (rs.next()) {
-                       
-                }
-            %>
-       
+                String start_date = rs.getString("start_date");
+                String end_date = rs.getString("end_date");
+                int retries= rs.getInt("retries");
+                int diff_range= rs.getInt("diff_range");
+                int diff_range_to= rs.getInt("diff_range_to");
+                int score_selection= rs.getInt("score_selection");
+                int points= rs.getInt("points");
+                int penalty= rs.getInt("penalty");
                 
-              <br>  Difficulty Range (1 to 6): <input type="text" class="form-control" placeholder="From" required name='diff_range_from'> to <input type="text" class="form-control" placeholder="To" required name='diff_range_to'><br>
+                %>      
+                
+                <br><br><p>Start Date: <input type="text" id="datepicker1" required name='start_date' value='<%=start_date%>'></p>
+                End Date : <input type="text" id="datepicker2" required name='end_date' value='<%=end_date%>'><br><br>
+                Number of Attempts: <input type="text" class="form-control" required name= 'retries' value='<%=retries%>'><br>
+ 
                 Score Selection Scheme: <select name="score_selection" onchange="">
                                         <option value=1>Latest Attempt</option>
                                         <option value=2>Maximum Score</option>
                                         <option value=3>Average Score</option>
                                         </select> <br><br>
                 <!-- TODO: Randomize seed implementation -->
-                Correct Answer Points: <input type="text" class="form-control" placeholder="Enter Correct Answer Points" required name='points'><br>
-                Incorrect Answer Points: <input type="text" class="form-control" placeholder="Enter Incorrect Answer Points" required name='penalty'><br>
+                Correct Answer Points: <input type="text" class="form-control" required name='points' value='<%=points%>'><br>
+                Incorrect Answer Points: <input type="text" class="form-control" required name='penalty' value='<%=penalty%>'><br>
                 <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;
+                
+                
+                <%
+                }
+            %>
+       
+                 
  <!--               <input type="submit" value="Submit" class="btn btn-default"> &nbsp; &nbsp;    -->
         <!--        <a href="professor.jsp">Back</a>                                       -->
                 <a href="javascript:history.back()">Back</a>

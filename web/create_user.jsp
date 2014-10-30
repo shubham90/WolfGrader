@@ -25,9 +25,11 @@ and open the template in the editor.
         <div>
             
             <div class="container">
-                <a href="create_user_student.jsp">Create Student</a><br />
-                <a href="create_user_ta.jsp">Register as a TA</a><br />
-                <a href="create_user_professor.jsp">Create Professor</a><br />
+                <a href="create_user_student.jsp">Create Student</a><br /><br>
+          
+                <a href="create_user_professor.jsp">Create Professor</a><br /><br>
+                
+                <a href="javascript:history.back()">Back</a>
             </div>
         </div>
     </body>

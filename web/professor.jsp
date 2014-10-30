@@ -19,7 +19,6 @@
         <title>Professor</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         <!-- if authenticated as a student: -->
         <a href="professor_select_course.jsp">Select Course</a><br />
         <a href="professor_add_course.jsp">Add Course</a><br />

@@ -49,21 +49,49 @@ e.printStackTrace();
         
        <% 
            System.out.print("I have reached Edit 2");
-           int val=Integer.parseInt((request.getParameter("question_column")).toString());  
-       if(val==1){
-           %><h2>You have selected Start Date</h2><%
-       }
-       else{
-           %><h2>You have selected other input</h2><%
-       }
+           String start_date=request.getParameter("start_date");
+           String end_date=request.getParameter("end_date");
+           int retries=(Integer.parseInt((request.getParameter("retries"))));
+           int score_selection=(Integer.parseInt((request.getParameter("score_selection"))));
+           int points=(Integer.parseInt((request.getParameter("points"))));
+           int penalty=(Integer.parseInt((request.getParameter("penalty"))));
+           int exid= Integer.parseInt(session.getAttribute("exid").toString());
+           SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+           String start_date1 = sdf.format(start_date);
+           System.out.print(start_date);
+           System.out.print(end_date);
+           System.out.print(retries);
+           System.out.print(score_selection);
+           System.out.print(points);
+           System.out.print(penalty);
+           System.out.print(exid);
        
-       
-       
-       
-       
-       
-       %>
-       
+        String query="UPDATE EXERCISES SET RETRIES="+retries+", "
+                + "START_DATE='"+start_date+"', "
+                + "END_DATE='"+end_date+"',"
+                + "POINTS="+points+", PENALTY="+penalty+","
+                + " SCORE_SELECTION="+score_selection+" "
+                + "WHERE EXID="+exid+" ";
+int rs;
+    
+
+System.out.print(query);
+try{
+            Statement st=con.createStatement();
+             rs = st.executeUpdate(query);
+           // rs=st.executeUpdate(query);
+            if(rs==1){
+            %><h2>Exercise Updated Successfully!</h2><%
+           }
+            else{
+          %><h2>Edit Unsuccessful!</h2><%  
+            }
+}
+catch(Exception e){
+            e.printStackTrace();
+}%>
+
+        <a href="javascript:history.back()">Back</a>
        
        
 

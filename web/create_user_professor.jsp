@@ -29,11 +29,8 @@ and open the template in the editor.
                     <input type="text" class="form-control" placeholder="Unity ID" required autofocus name="unityid">
                     <input type="text" class="form-control" placeholder="First Name" required autofocus name="fname">
                     <input type="text" class="form-control" placeholder="Last Name" required autofocus name="lname">
-                    <input type="password" class="form-control" placeholder="Password" required>
+                    <input type="password" class="form-control" placeholder="Password" required name="password">
                     <input type="hidden" name="role" value="3">
-                    <label class="checkbox">
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </div>
