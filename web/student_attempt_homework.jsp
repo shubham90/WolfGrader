@@ -43,7 +43,7 @@ Connection con;
         <title>Attempt Homework</title>
     </head>
     <body>
-        <% 
+        <%
             String token = session.getAttribute("token").toString(); 
             String unityid = session.getAttribute("name").toString();
         %>
@@ -60,10 +60,7 @@ Connection con;
         %><script>console.log("<%= formatted %>");
                     </script>
         <%
-        String query="SELECT E1.*, S1.* FROM EXERCISES E1, STUD_EX S1 "
-                + "WHERE E1.CID='"+token+"' "
-                + "AND TO_CHAR(E1.START_DATE, 'yyyy-MM-dd hh:mm:ss') <='"+formatted+"'"
-                + "AND TO_CHAR(E1.END_DATE, 'yyyy-MM-dd hh:mm:ss') >'"+formatted+"'AND S1.UNITYID = '"+unityid+"'";
+        String query="SELECT * FROM EXERCISES WHERE CID='"+token+"' AND TO_CHAR(START_DATE, 'yyyy-MM-dd hh:mm:ss') <= '"+formatted+"' AND TO_CHAR(END_DATE, 'yyyy-MM-dd hh:mm:ss') > '"+formatted+"'";
 	ResultSet rs;
         %>
         <form role="form" action="student_attempt_homework_pt_2.jsp" method="POST">
@@ -75,29 +72,40 @@ Connection con;
             Statement st=con.createStatement();
             rs=st.executeQuery(query);
             while(rs.next()){
+                System.out.print("hey1");
                 int exid = rs.getInt("EXID");
                 String cid = rs.getString("CID");
                 int retries = rs.getInt("RETRIES");
-                int attm_id = rs.getInt("ATTM_ID");
                 String name = rs.getString("NAME");
                 
-                if(attm_id >= retries){
+                String query_2="SELECT COUNT(*) FROM STUD_EX WHERE EX_ID="+exid+" AND UNITYID='"+unityid+"'";
+                ResultSet rs_2;
+                
+                Statement st_2=con.createStatement();
+                rs_2=st_2.executeQuery(query_2);
+                int attm_id = 0;
+                while(rs_2.next()){
+                    attm_id = rs_2.getInt("COUNT(*)");
+                    System.out.print("hey");
+                    if(attm_id >= retries){
                     %>
                     <option value="<%= exid %>" disabled><%= name %> (No more retries)</option>
+                    
                     <%
-                }
-                else if (retries > 5000){
+                    }
+                    else if (retries > 5000){
+                        %>
+                        <option value="<%= exid %>"><%= name %> (Unlimited retries)</option>
+                        <%
+                    }
+                    else if (attm_id < retries){
+                        %>
+                        <option value="<%= exid %>"><%= name %> (<%= retries %> retries)</option>
+                        <%
+                    }
                     %>
-                    <option value="<%= exid %>"><%= name %> (Unlimited retries)</option>
-                    <%
-                }
-                else if (attm_id < retries){
-                    %>
-                    <option value="<%= exid %>"><%= name %> (<%= retries %> retries)</option>
-                    <%
-                }
-                %>
             <%
+                }
             }
             %>
                     </select>
@@ -108,13 +116,13 @@ Connection con;
             <%
             }
 	catch(Exception e){
-		//System.out.println(e);
-		//throw new Exception();
+		System.out.println(e);
+		throw new Exception();
             
 	}
 %>
                     <a href="javascript:history.back()">Back</a>
-                </div>
-        </div>
+                
+    
     </body>
 </html>

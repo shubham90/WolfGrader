@@ -51,9 +51,11 @@ Connection con;
         <option> -->
         
         <% 
+            System.out.print("hey");
             String exid = request.getParameter("homework");
             int exid_int = Integer.parseInt(exid);
             String unityid = session.getAttribute("name").toString();
+            session.setAttribute("exid", exid_int);
             // determine number of questions in exercise.
             String query="SELECT COUNT(*) FROM EX_QUES WHERE EXID= "+exid_int;
             ResultSet rs;
@@ -86,6 +88,7 @@ Connection con;
             <div class="container">
                 <form role="form" name="exercise" method="POST" action="student_attempt_homework_pt_3.jsp">
                     <%
+                    System.out.print("hey");
                     //Select questions, answers, information
                     String query_2="SELECT E.*, Q.* FROM EX_QUES E, QUESTION Q"
                             + " WHERE E.QID=Q.QID AND E.EXID="+exid_int;
@@ -98,15 +101,9 @@ Connection con;
                         Statement st_2=con.createStatement();
                         rs_2=st_2.executeQuery(query_2);
                         while(rs_2.next()){
+                            System.out.print("hey1");
                             int qid = rs_2.getInt("QID");
-                            int pid = rs_2.getInt("PID");
-                            int aid = rs_2.getInt("AID");
                             String q_text = rs_2.getString("QTEXT");
-                            String cid = rs_2.getString("CID");
-                            int diff_level = rs_2.getInt("DIFF_LEVEL");
-                            int tid = rs_2.getInt("TID");
-                            String hint = rs_2.getString("HINT");
-                            String long_hint = rs_2.getString("LONG_HINT");
                             j += 1;
                             %>
                             <label class="control-label">Q<%= i %>. <%= q_text %></label>
@@ -121,8 +118,8 @@ Connection con;
                                 ResultSet rs_3;
                                 Statement st_3=con.createStatement();
                                 rs_3=st_3.executeQuery(query_3);
-                                while(rs_3.next()){
-                                    String explanation = rs_3.getString("EXPLANATION"); 
+                                while(rs_3.next()){ 
+                                    System.out.print("hey2");
                                     String answer_text = rs_3.getString("ANSWER_TEXT");
                                     int answer_id = rs_3.getInt("AID");
                                     int correct = rs_3.getInt("CORRECT");

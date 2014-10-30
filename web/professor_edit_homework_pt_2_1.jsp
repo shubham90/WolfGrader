@@ -56,8 +56,15 @@ e.printStackTrace();
            int points=(Integer.parseInt((request.getParameter("points"))));
            int penalty=(Integer.parseInt((request.getParameter("penalty"))));
            int exid= Integer.parseInt(session.getAttribute("exid").toString());
-           SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-           String start_date1 = sdf.format(start_date);
+          
+        Date date = new Date( );
+        long time = date.getTime();
+        String current_time = Long.toString(time);
+        SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String formatted = sdf.format(date.getTime());
+        
+        %><script>console.log("<%= formatted %>");
+                    </script> <%
            System.out.print(start_date);
            System.out.print(end_date);
            System.out.print(retries);

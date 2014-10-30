@@ -32,6 +32,7 @@ Date-10/20/2014
 <%
 	String uname=request.getParameter("uname");
 	String pwd=request.getParameter("pwd");
+       
         session.setAttribute( "name", uname );
 	String query="SELECT * FROM USERS WHERE UNITYID='"+uname+"' AND PASSWORD='"+pwd+"'";
 	boolean flag=true;
