@@ -97,7 +97,7 @@ catch(Exception e){
 }
 %>
     <!--    <a href="professor_add_homework.jsp">Back</a>                  -->
-        <a href="javascript:history.back()">Back</a>
+        <a href="login.html">Back</a>
         </form>   
     </body>
 </html>

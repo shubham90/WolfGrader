@@ -18,8 +18,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <title>TA</title>
     </head>
-    
-        <h1>Hello World!</h1>
+  
         <a href="ta_select_course.jsp">Select Course</a><br />
         <a href="javascript:history.back()">Back</a>
     
