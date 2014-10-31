@@ -45,20 +45,19 @@ Connection con;
     <body>
         
         <%
-            String unityid = (String) session.getAttribute("name");
-            if (request.getParameter("homework") != null){
-                int exid_1 = Integer.parseInt(request.getParameter("homework"));
-            
+            int q = Integer.parseInt(request.getParameter("homework"));
+            String unityid =  (session.getAttribute("name")).toString();
+            if (q != 0){
                 
         %>
         <h1>View Past Submission</h1>
         <div class="panel panel-default">
-            <div class="panel-heading">View Homeworks past due date</div>
+            <div class="panel-heading">View Homework past due date</div>
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked">
                         <%
                             /* This query needs changed */
-                            String query="SELECT AQ.*, Q.QTEXT, A.EXPLANATION, A.ANSWER_TEXT FROM ATTEMPTED_QUESTIONS AQ, QUESTION Q, ANSWER A, STUD_EX S WHERE AQ.EX_ID = S.EX_ID AND Q.QID = AQ.QID AND A.AID = AQ.AID AND AQ.UNITYID='"+unityid+"'AND S.EX_ID="+exid_1;
+                            String query="SELECT AQ.*, Q.QTEXT, A.EXPLANATION, A.ANSWER_TEXT FROM ATTEMPTED_QUESTIONS AQ, QUESTION Q, ANSWER A, STUD_EX S WHERE AQ.EX_ID = S.EX_ID AND Q.QID = AQ.QID AND A.AID = AQ.AID AND AQ.UNITYID='"+unityid+"'AND S.ATTM_ID="+q+"";
                             ResultSet rs;
                             try{
                                 Statement st=con.createStatement();
@@ -87,7 +86,7 @@ Connection con;
             
             <% }
             else{
-                int exid_2 = Integer.parseInt(request.getParameter("homework_2"));
+                int attm_id = Integer.parseInt(request.getParameter("homework"));
             
             %>
             <div class="panel-heading">View Homeworks within due date</div>
@@ -95,7 +94,7 @@ Connection con;
                     <ul class="nav nav-pills nav-stacked">
                         <%
                             /* This query needs adjusted */
-                            String query="SELECT AQ.*, Q.QTEXT, A.EXPLANATION, A.ANSWER_TEXT FROM ATTEMPTED_QUESTIONS AQ, QUESTION Q, ANSWER A, STUD_EX S WHERE AQ.EX_ID = S.EX_ID AND Q.QID = AQ.QID AND A.AID = AQ.AID AND AQ.UNITYID='"+unityid+"'AND S.EX_ID="+exid_2;
+                            String query="SELECT AQ.*, Q.QTEXT, A.EXPLANATION, A.ANSWER_TEXT FROM ATTEMPTED_QUESTIONS AQ, QUESTION Q, ANSWER A, STUD_EX S WHERE AQ.EX_ID = S.EX_ID AND Q.QID = AQ.QID AND A.AID = AQ.AID AND AQ.UNITYID='"+unityid+"'AND S.ATTM_ID="+q+"";
                             ResultSet rs;
                             try{
                                 Statement st=con.createStatement();

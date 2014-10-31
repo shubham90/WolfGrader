@@ -23,14 +23,28 @@
         <!-- 4A.6 -->
         <!-- Provide text box for user to submit a query -->
         <!-- Post results of said query to professor_reports_pt_2.jsp -->
-        <br />
+     
         <form role="form" name="show_reports" action="professor_reports_pt_2.jsp" method="post">
-            <div class="form-group">
-                <h2> Please write your query here</h2>
+            
+                <div class="col-md-8">
+                    <h2> Please write your query here</h2>
                 <input type="text" class="form-control" placeholder="Enter Query" required name="query">
-                <input type="submit" value="Submit">
+               <br> <input type="submit" value="Submit"><br><br>
+                
+           
+        </form>
+        <form role="form" name="bonus_reports" action="bonus_query.jsp" method="post">
+            <% String token=(session.getAttribute("token")).toString();
+            session.setAttribute("token",token);
+            
+            %>
+            <div class="form-group">
+                <h3> Students for Participation marks</h3>
+                <input type="submit" value="Submit" class="active">  
             </div>
         </form>
-        <a href="javascript:history.back()">Back</a>
+            <a href="javascript:history.back()">Back</a>
+            </div>
+        
     </body>
 </html>

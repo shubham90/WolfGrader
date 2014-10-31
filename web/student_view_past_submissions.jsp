@@ -72,11 +72,11 @@ e.printStackTrace();
                         rs=st.executeQuery(query);
                         while(rs.next()){
                             String name = rs.getString("NAME");
-                            int attm_id = rs.getInt("ATTM_ID");
+                            int attm_id1 = rs.getInt("ATTM_ID");
                             int score = rs.getInt("SCORE");
       
                     %>    
-                            <option value="">Homework: <%= name %>, Attempt #: <%= attm_id %>, Score: <%= score %></option>
+                            <option value="attm_id1">Homework: <%= name %>, Attempt #: <%= attm_id1 %>, Score: <%= score %></option>
                         <%
                         }
                         %>
@@ -120,11 +120,12 @@ e.printStackTrace();
                         rs2=st.executeQuery(query2);
                         while(rs2.next()){
                             String name = rs2.getString("NAME");
-                            int attm_id = rs2.getInt("ATTM_ID");
+                            int attm_id2 = rs2.getInt("ATTM_ID");
+                            System.out.print(attm_id2);
                             int score = rs2.getInt("SCORE");
 
                             %>
-                            <option value="">Homework: <%= name %>, Attempt #: <%= attm_id %>, Score: <%= score %></option>
+                            <option value="attm_id2">Homework: <%= name %>, Attempt #: <%= attm_id2 %>, Score: <%= score %></option>
                         <%
                             }
                         %>
