@@ -32,7 +32,44 @@ Date-10/20/2014
 <%
 	String uname=request.getParameter("uname");
 	String pwd=request.getParameter("pwd");
-       
+        String pfname=null;
+        String plname=null;
+        String name= null;
+        String sfname=null;
+        String slname=null;
+        String sname= null;
+        String query1= "SELECT fname, lname from prof where unityid='"+uname+"'";
+                ResultSet rs1=null;
+                try{
+            
+            Statement st1=con.createStatement();
+            rs1=st1.executeQuery(query1);
+            while(rs1.next()){
+                   pfname= rs1.getString("fname");
+                   plname= rs1.getString("lname");
+                   name= pfname + " " + plname;
+                }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                
+        String query2= "SELECT fname, lname from students where unityid='"+uname+"'";
+                ResultSet rs2=null;
+                try{
+            
+            Statement st2=con.createStatement();
+            rs2=st2.executeQuery(query2);
+            while(rs2.next()){
+                   sfname= rs2.getString("fname");
+                   slname= rs2.getString("lname");
+                   sname= slname + " " + sfname;
+                }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+    //        while(rs.next()){
+                
+        
         session.setAttribute( "name", uname );
 	String query="SELECT * FROM USERS WHERE UNITYID='"+uname+"' AND PASSWORD='"+pwd+"'";
 	boolean flag=true;
@@ -48,25 +85,24 @@ Date-10/20/2014
             <%
              } while(rs.next());
             } else {  
-            
-    //        while(rs.next()){
+             
                 int role = rs.getInt("ROLE");
                 if(role==1){
                     %>
-                    <right><h3>Welcome <%= uname %></h3><right><br>
+                    <right><h3>Welcome <%= sname %></h3><right><br>
                     <%@ include file="student.jsp" %>
         
                     <%
                 }
                 else if(role==2){
                     %>
-                    <right><h3>Welcome <%= uname %></h3><right><br>
+                    <right><h3>Welcome <%= sname %></h3><right><br>
                     <%@ include file="ta.jsp" %>
                     <%
                 }
                 else if(role==3){
                     %>
-                    <right><h3>Welcome <%= uname %></h3><right><br>
+                    <right><h3>Welcome <%= name %></h3><right><br>
                     <%@ include file="professor.jsp" %>
                     <%
                 }

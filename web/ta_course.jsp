@@ -31,6 +31,7 @@
                     <ul class="nav nav-pills nav-stacked">
                         <li><a href="ta_view_homework.jsp">View Homework</a></li>
                         <li><a href="ta_reports.jsp">Reports</a></li>
+                        <li><a href="ta_discuss.jsp">Doubt Forum</a></li>
                     </ul>
                     <br />
                     <a href="javascript:history.back()">Back</a>
