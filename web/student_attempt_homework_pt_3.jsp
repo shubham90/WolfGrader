@@ -56,7 +56,7 @@ Connection con;
             SimpleDateFormat sdf  = new SimpleDateFormat("ddMM-yyyy hh:mm:ss");
             String formatted = sdf.format(date.getTime());
             
-            String start_time = (String) session.getAttribute("current_time");
+            String start_time = (session.getAttribute("current_time")).toString();
         %>
         
         

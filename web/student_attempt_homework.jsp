@@ -123,7 +123,6 @@ Connection con;
 	}
 %>
                     <a href="javascript:history.back()">Back</a>
-                </div>
-        </div>
+               
     </body>
 </html>
