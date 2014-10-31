@@ -42,6 +42,7 @@ Connection con;
     </head>
     <body>
         <% 
+            System.out.print("hey");
             String token = session.getAttribute("token").toString();
             String unityid = session.getAttribute("name").toString();
         %>

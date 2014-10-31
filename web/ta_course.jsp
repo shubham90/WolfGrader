@@ -19,16 +19,18 @@
         <title>Course</title>
     </head>
     <body>
+        <% String token=request.getParameter("course"); 
+        session.setAttribute( "token", token ); 
+        %>
+        
         <!-- follow rules on page -->
-        <h1>Welcome to [INSERT COURSE NAME]</h1>
+        <h1>Welcome to <%= token %></h1>
         <div class="panel panel-default">
             <div class="panel-heading">Course Options</div>
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="student_view_scores.jsp">View Scores</a></li>
-                        <li><a href="student_attempt_homework.jsp">Attempt Homework</a></li>
-                        <li><a href="student_view_past_submissions.jsp">View Past Submissions</a></li>
-                        <li><a href="student_view_notification.jsp">View Notifications</a></li>
+                        <li><a href="ta_view_homework.jsp">View Homework</a></li>
+                        <li><a href="ta_reports.jsp">Reports</a></li>
                     </ul>
                     <br />
                     <a href="javascript:history.back()">Back</a>

@@ -46,7 +46,7 @@ Connection con;
                 <select class="form-control" name="course">
         <%
         String test = session.getAttribute("name").toString();
-        
+        session.setAttribute("unityid", test);
 	String query="SELECT C1.CID, C1.NAME, C1.TOKEN FROM COURSES C1 "
                 + "WHERE C1.UNITYID='"+test+"'";
 	ResultSet rs;

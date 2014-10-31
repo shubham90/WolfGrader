@@ -43,13 +43,6 @@ Connection con;
         <title>Homework</title>
     </head>
     <body>
-        <!-- follow rules on page -->
-        <!-- Loop through result query set and post questions in format below-->
-        <!-- <h1>[INSERT COURSE NAME]</h1> -->
-        
-        <!-- have a while loop, put it all in 1 big form. 
-        <option> -->
-        
         <% 
             System.out.print("hey");
             String exid = request.getParameter("homework");
@@ -60,6 +53,12 @@ Connection con;
             String query="SELECT COUNT(*) FROM EX_QUES WHERE EXID= "+exid_int;
             ResultSet rs;
             int num_of_questions = 0;
+            Date date = new Date( );
+            long time = date.getTime();
+            String current_time = Long.toString(time);
+            SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String formatted = sdf.format(date.getTime());
+            session.setAttribute("current_time", time);
             try{
                 Statement st=con.createStatement();
                 rs=st.executeQuery(query);
@@ -73,12 +72,7 @@ Connection con;
             session.setAttribute("num_of_questions", num_of_questions);
             
         %>
-        <!-- If selection is "":
-        <script>
-            alert("Please select an exercise");
-            history.back();
-        </script>-->
-        
+               
         <!-- could add query to get homework name based on exid to put in <h1> -->
         <h1>Homework for <%= session.getAttribute("token") %>!</h1>
         

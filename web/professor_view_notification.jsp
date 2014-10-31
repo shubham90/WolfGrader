@@ -19,7 +19,18 @@
         <title>View Notifications</title>
     </head>
     <body>
-        <h2>View Notifications</h2
+        <% String token=request.getParameter("course"); 
+        session.setAttribute( "token", token ); 
+        String unityid = session.getAttribute("unityid").toString();
+        session.setAttribute("unityid", unityid);
+        %>
+        
+        
+        <h2>View Notifications</h2>
+        
+        
+        
+        
         <!-- 4A.5 -->
         <!-- Display unread notifications if any -->
         <!-- Otherwise, display "No unread notifications for this course -->

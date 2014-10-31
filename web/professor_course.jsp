@@ -22,6 +22,8 @@
     <body>
         <% String token=request.getParameter("course"); 
         session.setAttribute( "token", token ); 
+        String unityid = session.getAttribute("unityid").toString();
+        session.setAttribute("unityid", unityid);
         %>
         
         <!-- follow rules on page -->

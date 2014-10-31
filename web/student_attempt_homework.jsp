@@ -56,6 +56,7 @@ Connection con;
         String current_time = Long.toString(time);
         SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String formatted = sdf.format(date.getTime());
+        
         %><script>console.log("<%= formatted %>");
                     </script>
         <%
@@ -86,6 +87,7 @@ Connection con;
                 while(rs_2.next()){
                     attm_id = rs_2.getInt("COUNT(*)");
                     System.out.print("hey");
+                    int total_retries = retries - attm_id;
                     if(attm_id >= retries){
                     %>
                     <option value="<%= exid %>" disabled><%= name %> (No more retries)</option>
@@ -97,9 +99,9 @@ Connection con;
                         <option value="<%= exid %>"><%= name %> (Unlimited retries)</option>
                         <%
                     }
-                    else if (attm_id < retries){
+                    else if (total_retries <= retries){
                         %>
-                        <option value="<%= exid %>"><%= name %> (<%= retries %> retries)</option>
+                        <option value="<%= exid %>"><%= name %> (<%= total_retries %> retries)</option>
                         <%
                     }
                     %>
@@ -121,7 +123,7 @@ Connection con;
 	}
 %>
                     <a href="javascript:history.back()">Back</a>
-                
-    
+                </div>
+        </div>
     </body>
 </html>

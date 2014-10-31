@@ -53,8 +53,10 @@ Connection con;
             Date date = new Date( );
             long time = date.getTime();
             String current_time = Long.toString(time);
-            SimpleDateFormat sdf  = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            SimpleDateFormat sdf  = new SimpleDateFormat("ddMM-yyyy hh:mm:ss");
             String formatted = sdf.format(date.getTime());
+            
+            String start_time = (String) session.getAttribute("current_time");
         %>
         
         
@@ -87,7 +89,7 @@ Connection con;
                                 Statement st=con.createStatement();
                                 rs=st.executeQuery(query);
                                 while(rs.next()){
-                                    String query_5 = "";
+                                    String query_15 = "";
                                     System.out.print("hey4");
                                     int question_id = rs.getInt("QID");
                                     int answer_id = rs.getInt("AID");
@@ -107,12 +109,31 @@ Connection con;
                                     else{
                                         score += points;
                                     }
+                                    String query_14="SELECT MAX(ATTM_ID) FROM STUD_EX WHERE EX_ID="+session_exid+"AND UNITYID='"+session.getAttribute("name").toString()+"'";
+                                    ResultSet rs_14;
+                                    int max_attm_id_2 = 0;
+                                    int new_attm_id_2 = 0;
                                     
                                     try{
-                                        query_5="INSERT INTO ATTEMPTED_QUESTIONS VALUES('"+session.getAttribute("name").toString()+"',"+Integer.parseInt(request.getParameter(""+i))+","+question_id+","+answer_id+","+correct+","+exid+")";
-                                        System.out.print("hey3 "+request.getParameter(""+i));
+                                        System.out.print("hey15");
+                                        Statement st_14=con.createStatement();
+                                        rs_14=st_14.executeQuery(query_14);
+                                        while(rs_14.next()){
+                                            System.out.print("hey16");
+                                            max_attm_id_2 = rs_14.getInt("MAX(ATTM_ID)");
+                                            new_attm_id_2 = 1 + max_attm_id_2;
+                                        }
+                                    }catch(Exception e){
+
+                                        %><script>console.log("12");</script><%
+                                        System.out.println(e);
+                                        throw new Exception();
+                                    }
+                                    query_15="INSERT INTO ATTEMPTED_QUESTIONS VALUES('"+session.getAttribute("name").toString()+"',"+new_attm_id_2+","+question_id+","+answer_id+","+correct+","+exid+")";
+                                    try{                                        
+                                        System.out.print("hey3 ");
                                         Statement st_5=con.createStatement();
-                                        st_5.executeQuery(query_5);
+                                        st_5.executeQuery(query_15);
                                     }
                                     catch(Exception e){
                                         System.out.println(e);
@@ -148,7 +169,7 @@ Connection con;
                         new_attm_id = 1 + max_attm_id;
                         
                         String unityid = session.getAttribute("name").toString();
-                        String query_3="INSERT INTO STUD_EX VALUES ("+new_attm_id+",'"+unityid+"',"+score+",SYSDATE,"+session_exid+")";
+                        String query_3="INSERT INTO STUD_EX VALUES ("+new_attm_id+",'"+unityid+"',"+score+",SYSDATE,"+session_exid+",SYSDATE, SYSDATE)";
                         try{
                             Statement st_3=con.createStatement();
                             st_3.executeQuery(query_3);
