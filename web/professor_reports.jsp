@@ -28,7 +28,7 @@
             
                 <div class="col-md-8">
                     <h2> Please write your query here</h2>
-                <input type="text" class="form-control" placeholder="Enter Query" required name="query">
+                    <textarea rows="5" cols="100" placeholder="Enter Query" required name="query"></textarea>
                <br> <input type="submit" value="Submit"><br><br>
                 
            
@@ -43,6 +43,18 @@
                 <input type="submit" value="Submit" class="active">  
             </div>
         </form>
+            
+            
+        <!--    <form role="form" name="query 4" action="query_4.jsp" method="post">
+          <% //  String token1=(session.getAttribute("token")).toString(); 
+      //      session.setAttribute("token",token1);
+            
+            %>
+            <div class="form-group">
+                <h3> Query 4</h3>
+                <input type="submit" value="Query 4" class="active">  
+            </div>
+        </form> -->
             <a href="javascript:history.back()">Back</a>
             </div>
         
