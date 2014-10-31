@@ -45,6 +45,8 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css"/ >
+       
         <title>Add Exercise</title>
     </head>
     
@@ -52,6 +54,7 @@
     <body>
         
         <script>
+    
              $(function() {
                 $("#datepicker1").datepicker({ dateFormat: "dd MM yy" });
                 $("#datepicker2").datepicker({ dateFormat: "dd MM yy" });
@@ -59,7 +62,7 @@
         </script>
         <!-- perhaps have an add homework success page.. -->
         <form role="form" action="professor_add_homework_2.jsp" method="POST">
-                <div class="form-group col-xs-4">
+         <div class="form-group col-xs-4">
                 <br><br><p>Start Date: <input type="text" id="datepicker1" required name='start_date'></p>
                 End Date : <input type="text" id="datepicker2" required name='end_date'><br><br>
                 Name of the Homework : <input type="text" class="form-control" placeholder="Name of Homework" required name='name'><br><br>

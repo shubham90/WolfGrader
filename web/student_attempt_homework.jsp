@@ -56,7 +56,6 @@ Connection con;
         String current_time = Long.toString(time);
         SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String formatted = sdf.format(date.getTime());
-        
         %><script>console.log("<%= formatted %>");
                     </script>
         <%

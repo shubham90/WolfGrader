@@ -92,8 +92,8 @@
                 
                 %>      
                 
-                <br><br><p>Start Date: <input type="text" id="datepicker1" required name='start_date' value='<%=start_date%>'></p>
-                End Date : <input type="text" id="datepicker2" required name='end_date' value='<%=end_date%>'><br><br>
+                <br><br><p>Start Date:<%=start_date%> <input type="text" id="datepicker1" required name='start_date'></p>
+                End Date :<%=end_date%> <input type="text" id="datepicker2" required name='end_date'><br><br>
                 Number of Attempts: <input type="text" class="form-control" required name= 'retries' value='<%=retries%>'><br>
  
                 Score Selection Scheme: <select name="score_selection" onchange="">

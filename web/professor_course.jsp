@@ -36,6 +36,7 @@
                         <li><a href="professor_view_homework.jsp">View Homework</a></li>
                         <li><a href="professor_view_notification.jsp">View Notification</a></li>
                         <li><a href="professor_reports.jsp">Reports</a></li>
+                        <li><a href="professor_discuss.jsp">Doubt Forum</a></li>
                         <li><a href="javascript:history.back()">Back</a></li>
                     </ul>
                     <br />

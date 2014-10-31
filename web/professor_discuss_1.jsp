@@ -1,7 +1,7 @@
 <%-- 
-    Document   : select_course
-    Created on : Oct 13, 2014, 8:10:35 PM
-    Author     : adam
+    Document   : Professor_discuss
+    Created on : Oct 30, 2014, 8:10:35 PM
+    Author     : Shubham
 --%>
 
 <%@ page import="java.text.SimpleDateFormat"%>
@@ -43,30 +43,22 @@ e.printStackTrace();
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <title>Edit Homework</title>
+        <title>Doubt Forum</title>
     </head>
     <body>
         
        <% 
-           System.out.print("I have reached Edit 2");
-           String start_date=request.getParameter("start_date");
-           String end_date=request.getParameter("end_date");
-           int retries=(Integer.parseInt((request.getParameter("retries"))));
-           int score_selection=(Integer.parseInt((request.getParameter("score_selection"))));
-           int points=(Integer.parseInt((request.getParameter("points"))));
-           int penalty=(Integer.parseInt((request.getParameter("penalty"))));
-           int exid= Integer.parseInt(session.getAttribute("exid").toString());
-          
-        
-           System.out.print(start_date);
-           System.out.print(end_date);
+           String question=request.getParameter("question");
+           String answer=request.getParameter("answer");
+           String token= (session.getAttribute("token")).toString();
+           int resolve=(Integer.parseInt((request.getParameter("resolve"))));
+           int trivial=(Integer.parseInt((request.getParameter("trivial"))));
+
    
-        String query="UPDATE EXERCISES SET RETRIES="+retries+", "
-                + "START_DATE='"+start_date+"', "
-                + "END_DATE='"+end_date+"',"
-                + "POINTS="+points+", PENALTY="+penalty+","
-                + " SCORE_SELECTION="+score_selection+" "
-                + "WHERE EXID="+exid+" ";
+        String query="UPDATE DISCUSS SET ANSWER='"+answer+"', "
+                + "RESOLVE= "+resolve+", "
+                + "trivial="+trivial+" "
+                + "WHERE question='"+question+"' ";
 int rs;
     
 
@@ -76,10 +68,10 @@ try{
              rs = st.executeUpdate(query);
            // rs=st.executeUpdate(query);
             if(rs==1){
-            %><h2>Exercise Updated Successfully!</h2><%
+            %><h2>Doubt Updated Successfully!</h2><%
            }
             else{
-          %><h2>Edit Unsuccessful!</h2><%  
+          %><h2>Update Unsuccessful!</h2><%  
             }
 }
 catch(Exception e){
