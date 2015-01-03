@@ -1,6 +1,6 @@
 <%-- 
-    Document   : student_discuss_new
-    Created on : Oct 30, 2014, 5:53:47 PM
+    Document   : query_4
+    Created on : Oct 30, 2014, 5:53:47 AM
     Author     : Shubham
 --%>
 
@@ -58,7 +58,7 @@
         System.out.print(token);
         
 	String query="SELECT e.name, e.exid, e.score_selection FROM exercises e "
-                + "WHERE e.CID='"+token+"' ";
+                + "WHERE e.CID='"+token+"'";
 	System.out.print(query);
         ResultSet rs;
 	try{
